@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif;
+  
+  /* Official Brand Colors from nroofingandhomeimprovement.com */
+  --color-brand-red: #8f0907;
+  --color-brand-red-hover: #730705;
+  --color-brand-red-dark: #5a0604;
+  --color-brand-red-light: #fcf1f1;
+  --color-brand-blue: #022440;
+  --color-brand-blue-hover: #033259;
+  --color-brand-blue-dark: #011627;
+  --color-brand-blue-light: #063963;
+  --color-brand-blue-surface: #0a3055;
+  --color-brand-white: #ffffff;
+}
+
+/* Custom smooth transitions and typography helpers */
+body {
+  font-family: var(--font-sans);
+  color: #0f172a;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+}
+
+/* Theme accent variables */
+:root {
+  --theme-primary: #8f0907;
+  --theme-primary-hover: #730705;
+  --theme-dark: #022440;
+  --theme-card-border: #e2e8f0;
+  --brand-red: #8f0907;
+  --brand-blue: #022440;
+  --brand-white: #ffffff;
+}
+
+.theme-professional,
+.theme-brand {
+  --theme-primary: #8f0907;
+  --theme-primary-hover: #730705;
+  --theme-dark: #022440;
+}
+
+.theme-classic {
+  --theme-primary: #8f0907;
+  --theme-primary-hover: #730705;
+  --theme-dark: #022440;
+}
+
+.theme-minimal {
+  --theme-primary: #022440;
+  --theme-primary-hover: #033259;
+  --theme-dark: #011627;
+}
+

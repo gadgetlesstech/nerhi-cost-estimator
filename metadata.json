@@ -1,0 +1,6 @@
+{
+  "name": "Northeast Roofing Cost Estimator",
+  "description": "Roofing cost estimator and landing page for Northeast Roofing and Home Improvement in Fairfield County, CT.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
