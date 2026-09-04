@@ -1,0 +1,24 @@
+services:
+  nerhi-cost-estimator:
+    build:
+      context: .
+    container_name: nerhi-cost-estimator
+    restart: unless-stopped
+    expose:
+      - "3000"
+    env_file:
+      - .env
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.nerhi-cost-estimator.rule=Host(`roofcostestimator.neroofingandhomeimprovement.com`)
+      - traefik.http.routers.nerhi-cost-estimator.tls=true
+      - traefik.http.routers.nerhi-cost-estimator.entrypoints=web,websecure
+      - traefik.http.routers.nerhi-cost-estimator.tls.certresolver=mytlschallenge
+      - traefik.http.services.nerhi-cost-estimator.loadbalancer.server.port=3000
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true
+    name: root_default
