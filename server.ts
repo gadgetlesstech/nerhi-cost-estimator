@@ -38,6 +38,55 @@ interface LeadRecord {
 
 const leadsStore: LeadRecord[] = [];
 
+async function sendLeadNotificationEmail(lead: LeadRecord): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.RESEND_FROM_EMAIL;
+  const recipients = (process.env.LEAD_NOTIFICATION_EMAILS || "")
+    .split(",")
+    .map((addr) => addr.trim())
+    .filter(Boolean);
+
+  if (!apiKey || !from || recipients.length === 0) {
+    console.warn("[Lead Notification] Skipped: RESEND_API_KEY, RESEND_FROM_EMAIL, or LEAD_NOTIFICATION_EMAILS not configured.");
+    return;
+  }
+
+  const subject = `New ${lead.type === "direct_schedule" ? "Consultation Request" : "Estimate Lead"}: ${lead.fullName}`;
+  const html = `
+    <h2>New Lead from Roof Cost Estimator</h2>
+    <p><strong>Name:</strong> ${lead.fullName}</p>
+    <p><strong>Email:</strong> ${lead.email || "—"}</p>
+    <p><strong>Phone:</strong> ${lead.phone || "—"}</p>
+    <p><strong>City/Town:</strong> ${lead.cityOrTown}</p>
+    <p><strong>Service Needed:</strong> ${lead.serviceNeeded}</p>
+    <p><strong>Roof Age:</strong> ${lead.roofAge}</p>
+    <p><strong>Notes:</strong> ${lead.notes || "—"}</p>
+    ${
+      lead.estimateDetails
+        ? `<h3>Estimate Details</h3>
+           <p>Square Footage: ${lead.estimateDetails.squareFootage}, Stories: ${lead.estimateDetails.stories}, Slope: ${lead.estimateDetails.slope}</p>
+           <p>Shingle Grade: ${lead.estimateDetails.shingleGrade}, Estimated Squares: ${lead.estimateDetails.estimatedSquares}</p>
+           <p>Estimated Range: $${lead.estimateDetails.lowEstimate} - $${lead.estimateDetails.highEstimate}</p>`
+        : ""
+    }
+    <p><em>Lead ID: ${lead.id} | Received: ${lead.timestamp}</em></p>
+  `;
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ from, to: recipients, subject, html }),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Resend API error (${response.status}): ${errorText}`);
+  }
+}
+
 // API Health
 app.get("/api/health", (req, res) => {
   res.json({
@@ -192,6 +241,10 @@ app.post("/api/leads", (req, res) => {
 
     leadsStore.unshift(newLead);
     console.log(`[New Lead Received] ${newLead.fullName} (${newLead.phone}) - ${newLead.serviceNeeded}`);
+
+    sendLeadNotificationEmail(newLead).catch((err) => {
+      console.error("[Lead Notification] Failed to send email:", err.message);
+    });
 
     res.status(201).json({
       success: true,
