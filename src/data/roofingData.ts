@@ -57,7 +57,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     shortDesc: "Fast response for active leaks, wind-blown shingles, damaged pipe boots, and chimney flashing.",
     fullDesc:
       "Whether you're dealing with storm damage, sudden leaks, or aging shingles, our experienced roofing team diagnoses the root cause. We handle flashing repairs, ridge cap blow-offs, plumbing boot replacements, and structural chimney sealing to prevent interior water damage.",
-    imageUrl: "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=900&q=80",
+    imageUrl: "/roof-repair-emergency-mitigation.jpg",
     bullets: [
       "Rapid leak detection & emergency tarping",
       "Exact-match shingle replacement",
