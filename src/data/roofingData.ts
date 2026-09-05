@@ -71,7 +71,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     shortDesc: "Detailed 21-point exterior and attic roof inspection with high-resolution photo documentation.",
     fullDesc:
       "Prevent unexpected emergency repairs with an in-depth roof health check. We evaluate shingle granule loss, attic moisture levels, decking stability, chimney mortar integrity, and gutters. You receive an honest, transparent report with no high-pressure sales.",
-    imageUrl: "https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=900&q=80",
+    imageUrl: "/roof-storm-damage.jpg",
     bullets: [
       "Comprehensive 21-point roofing inspection",
       "Drone photography & high-resolution condition report",
