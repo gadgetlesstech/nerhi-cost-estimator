@@ -57,17 +57,14 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
         }`}
       >
         {!hasError ? (
-          <picture>
-            <source srcSet="/logo.svg" type="image/svg+xml" />
-            <img
-              src="/180x180.png"
-              srcSet="/180x180.png 1x, /logo.png 2x, /logo.svg 3x"
-              alt="North East Roofing & Home Improvement Logo"
-              referrerPolicy="no-referrer"
-              onError={() => setHasError(true)}
-              className={`${currentSize.img} w-auto object-contain drop-shadow-md`}
-            />
-          </picture>
+          <img
+            src="/180x180.png"
+            srcSet="/180x180.png 1x, /logo.png 2x"
+            alt="North East Roofing & Home Improvement Logo"
+            referrerPolicy="no-referrer"
+            onError={() => setHasError(true)}
+            className={`${currentSize.img} w-auto object-contain drop-shadow-md`}
+          />
         ) : (
           /* High-Fidelity Inline Vector Fallback */
           <img

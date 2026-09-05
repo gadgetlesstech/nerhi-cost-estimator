@@ -18,7 +18,6 @@ export const COMPANY_INFO = {
   founderTitle: "Owner & Lead Contractor",
   founderPhoto: "/424639366_10160489814589081_5574873227719755200_n.jpg",
   logoUrl: "/180x180.png",
-  logoSvgUrl: "/logo.svg",
   experienceYears: 15,
   completedProjects: "500+",
   townsServed: [
