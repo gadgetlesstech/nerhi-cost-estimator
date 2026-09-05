@@ -116,7 +116,7 @@ export const DirectScheduleForm: React.FC = () => {
         <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl border border-slate-200/90 overflow-hidden">
           {/* Logo Header */}
           <div className="pt-8 pb-4 flex justify-center border-b border-slate-100 bg-slate-50/50">
-            <BrandLogo size="sm" />
+            <BrandLogo size="lg" />
           </div>
 
           <div className="p-6 sm:p-10">
